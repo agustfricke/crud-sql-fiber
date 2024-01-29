@@ -8,6 +8,7 @@ import (
 func SetupRoutes(app *fiber.App) {
   app.Get("/all", handlers.GetAll)
   app.Delete("/delete/:id", handlers.DeleteAlbum)
+  app.Put("/put/:id", handlers.UpdateAlbum)
   app.Get("/name/:artist", handlers.GetByName)
   app.Get("/id/:id", handlers.GetByID)
   app.Post("/add", handlers.CreateAlbum)

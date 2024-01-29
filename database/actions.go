@@ -104,3 +104,12 @@ func DeleteAlbum(id string) error {
     return nil
 }
 
+func UpdateAlbum(id string, alb models.Album) error {
+	_, err := DB.Exec("UPDATE album SET title=? , artist=?, price=? WHERE id=?", alb.Title, alb.Artist, alb.Price, id)
+	if err != nil {
+		return fmt.Errorf("error updating album: %v", err)
+	}
+
+	return nil
+}
+

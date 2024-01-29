@@ -9,9 +9,21 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// todo
-func EditAlbum(c *fiber.Ctx) error {
-  return nil
+func UpdateAlbum(c *fiber.Ctx) error {
+  id := c.Params("id")
+
+  album := new(models.Album)
+  if err := c.BodyParser(album); err != nil {
+    return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Bad request"})
+  }
+
+  err := database.UpdateAlbum(id, *album)
+  if err != nil {
+    log.Fatal(err)
+    return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Interal Sever Error"})
+  }
+
+  return c.JSON(album)
 }
 
 func DeleteAlbum(c *fiber.Ctx) error {

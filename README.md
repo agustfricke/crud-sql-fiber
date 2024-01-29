@@ -65,3 +65,12 @@ curl http://localhost:6969/name/Agustin
 ```bash
 curl -X DELETE http://localhost:6969/delete/1
 ```
+
+- Update by ID
+```bash
+curl -X PUT -H "Content-Type: application/json" -d '{
+  "title": "edit",
+  "artist": "edit",
+  "price": 420
+}' http://localhost:6969/put/1
+```

@@ -1,0 +1,5 @@
+curl -X PUT -H "Content-Type: application/json" -d '{
+  "title": "222",
+  "artist": "222",
+  "price": 420
+}' http://localhost:6969/put/3
