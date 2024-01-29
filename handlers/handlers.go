@@ -38,14 +38,22 @@ func CreateAlbum(c *fiber.Ctx) error {
     return c.JSON(albID)
 }
 
+func GetByID(c *fiber.Ctx) error {
+    id := c.Params("id")
+    albums, err := database.AlbumByID(id)
+    if err != nil {
+        log.Fatal(err)
+    }
+    return c.JSON(albums)
+}
 
-func Hello(c *fiber.Ctx) error {
+
+func GetByName(c *fiber.Ctx) error {
     artist := c.Params("artist")
     fmt.Println(artist)
     albums, err := database.AlbumsByArtist(artist)
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Printf("Albums found: %v\n", albums)
     return c.JSON(albums)
 }
