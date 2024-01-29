@@ -9,6 +9,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+func GetAll(c *fiber.Ctx) error {
+  albums, err := database.GetAllAlbums()
+  if err != nil {
+    log.Fatal(err)
+  }
+  return c.JSON(albums)
+
+}
+
 func CreateAlbum(c *fiber.Ctx) error {
     album := new(models.Album)
 

@@ -6,6 +6,7 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
+  app.Get("/all", handlers.GetAll)
   app.Get("/hello/:artist", handlers.Hello)
   app.Post("/add", handlers.CreateAlbum)
 }
