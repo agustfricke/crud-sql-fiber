@@ -9,6 +9,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// todo
+func EditAlbum(c *fiber.Ctx) error {
+  return nil
+}
+
+func DeleteAlbum(c *fiber.Ctx) error {
+  return nil
+}
+
 func GetAll(c *fiber.Ctx) error {
   albums, err := database.GetAllAlbums()
   if err != nil {

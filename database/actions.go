@@ -7,6 +7,7 @@ import (
 	"github.com/agustfricke/crud-sql-fiber/models"
 )
 
+
 func AddAlbum(alb models.Album) (models.Album, error) {
     result, err := DB.Exec("INSERT INTO album (title, artist, price) VALUES (?, ?, ?)", alb.Title, alb.Artist, alb.Price)
     if err != nil {

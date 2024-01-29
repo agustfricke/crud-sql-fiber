@@ -1,5 +1,14 @@
 # GO + MYSQL CRUD 
 
+## Usage
+
+
+- Clone the repo
+```bash
+git clone https://github.com/agustfricke/crud-sql-fiber
+```
+
+- Run the database
 ```bash
 docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0-debian
 sudo docker exec -it some-mysql bash
@@ -8,6 +17,7 @@ create database todo;
 use todo;
 ```
 
+- Create the tables
 ```sql
 DROP TABLE IF EXISTS album;
 CREATE TABLE album (
@@ -17,20 +27,36 @@ CREATE TABLE album (
   price      DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`id`)
 );
-
-INSERT INTO album
-  (title, artist, price)
-VALUES
-  ('Blue Train', 'John Coltrane', 56.99),
-  ('Giant Steps', 'John Coltrane', 63.99),
-  ('Jeru', 'Gerry Mulligan', 17.99),
-  ('Sarah Vaughan', 'Sarah Vaughan', 34.98);
 ```
 
-## Usage
-- Run the scripts inside of the folder **requests**
-
+- Run the server
 ```bash
-# post request
-./requests/post
+cd crud-sql-fiber
+go run main.go
+```
+
+### Test the endpoints
+
+- Create
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+  "title": "Hola Mundo!",
+  "artist": "Agustin",
+  "price": 69.99
+}' http://localhost:6969/add
+```
+
+- Get all
+```bash
+curl http://localhost:6969/all
+```
+
+- Get by ID
+```bash
+curl http://localhost:6969/id/1
+```
+
+- Get by artist name
+```bash
+curl http://localhost:6969/name/Agustin
 ```
