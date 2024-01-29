@@ -86,3 +86,21 @@ func AlbumByID(id string) (models.Album, error) {
     return alb, nil
 }
 
+
+func DeleteAlbum(id string) error {
+    result, err := DB.Exec("DELETE FROM album WHERE id = ?", id)
+    if err != nil {
+      return fmt.Errorf("Error deleting album %s: %v", id, err)
+    }
+
+    rowsAffected, err := result.RowsAffected()
+    if err != nil {
+      return fmt.Errorf("error getting rows affected %v", err)
+    }
+
+    if rowsAffected == 0 {
+      return fmt.Errorf("no album found with ID: %s", id)
+    }
+    return nil
+}
+

@@ -15,7 +15,7 @@ func ConnectDB() {
         Passwd: "my-secret-pw",
         Net:    "tcp",
         Addr:   "127.0.0.1:3306",
-        DBName: "todo",
+        DBName: "albums",
     }
     // Get a database handle.
     var err error

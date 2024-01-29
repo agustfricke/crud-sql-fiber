@@ -15,7 +15,13 @@ func EditAlbum(c *fiber.Ctx) error {
 }
 
 func DeleteAlbum(c *fiber.Ctx) error {
-  return nil
+  id := c.Params("id")
+  err := database.DeleteAlbum(id)
+  if err != nil {
+    log.Fatal(err)
+    return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Interal Sever Error"})
+  }
+  return c.JSON(fiber.Map{"message": "Album deleted successfully"})
 }
 
 func GetAll(c *fiber.Ctx) error {

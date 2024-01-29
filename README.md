@@ -10,11 +10,11 @@ git clone https://github.com/agustfricke/crud-sql-fiber
 
 - Run the database
 ```bash
-docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0-debian
+sudo docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -d mysql:8.0-debian
 sudo docker exec -it some-mysql bash
 mysql -u root -p
-create database todo;
-use todo;
+create database albums;
+use albums;
 ```
 
 - Create the tables
@@ -59,4 +59,9 @@ curl http://localhost:6969/id/1
 - Get by artist name
 ```bash
 curl http://localhost:6969/name/Agustin
+```
+
+- Delete by ID
+```bash
+curl -X DELETE http://localhost:6969/delete/1
 ```
